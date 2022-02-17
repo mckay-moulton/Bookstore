@@ -1,0 +1,14 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model IQueryable<Bookstore>
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Yo Yo it's bookstore time'.</p>
+</div>
+
+@foreach (Bookstore b in Model)
+            {
+                <h3>@b.BookID</h3> <br />
+            }
