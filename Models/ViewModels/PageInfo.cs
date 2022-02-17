@@ -11,6 +11,7 @@ namespace Bookstore.Models.ViewModels
         public int ProjectPerPage { get; set; }
         public int CurrentPage { get; set; }
 
+        // create varaible that determines how many pages we should have, based on the total number of projects
         public int TotalPages => (int)Math.Ceiling((double)TotalNumProjects / ProjectPerPage);
     }
 }

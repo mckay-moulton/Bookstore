@@ -22,6 +22,7 @@ namespace Bookstore.Controllers
             repo = temp;
         }
 
+        //create index page view, which will include some sql-like filtering
         public IActionResult Index(int pageNum = 1)
         {
             int pageSize = 5;

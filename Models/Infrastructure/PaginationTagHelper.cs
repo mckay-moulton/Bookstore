@@ -24,6 +24,7 @@ namespace Bookstore.Models.Infrastructure
         }
 
         [ViewContext]
+        // create an html attribute that allows it to be dynamic...I think
         [HtmlAttributeNotBound]
 
         public ViewContext vc { get; set; }
@@ -46,7 +47,7 @@ namespace Bookstore.Models.Infrastructure
                 TagBuilder tb = new TagBuilder("a");
                 tb.Attributes["href"] = uh.Action(PageAction, new { pagenum = i });
 
-                // added this from chapter 7
+                // added this from chapter 7 to use the boostrap classes
                 if (PageClassesEnabled)
                 {
                     tb.AddCssClass(PageClass);

@@ -5,22 +5,23 @@
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>Yo Yo it's bookstore time'.</p>
+    <p>Yo Yo it's bookstore time!</p>
 </div>
 
 @foreach (Bookstore b in Model.Books)
     {
-        <h3>@b.Title</h3> <br />
+        <h3>@b.Title</h3>
+                          // list out each column in the dataframe
                           <ul>
                               <li>Author: @b.Author</li>
-                              <li>Publisher: @b.Publisher.</li>
-                              <li>ISBN: @b.ISBN.</li>
-                              <li>Classification: @b.Classification.</li>
-                              <li>Category: @b.Category.</li>
-                              <li>Page Count: @b.PageCount.</li>
-                              <li>Pages: @b.PageCount.</li>
-                              <li>Price: @b.Price.</li>
-                          </ul>
+                              <li>Publisher: @b.Publisher</li>
+                              <li>ISBN: @b.ISBN</li>
+                              <li>Classification: @b.Classification</li>
+                              <li>Category: @b.Category</li>
+                              <li>Page Count: @b.PageCount</li>
+                              <li>Pages: @b.PageCount</li>
+                              <li>Price: $@b.Price</li>
+                          </ul><br />
     }
 
 <div>
