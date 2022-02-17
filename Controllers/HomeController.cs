@@ -1,4 +1,5 @@
 ﻿using Bookstore.Models;
+using Bookstore.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -21,13 +22,25 @@ namespace Bookstore.Controllers
             repo = temp;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(int pageNum = 1)
         {
-            var blah = repo.Books
+            int pageSize = 5;
+            var x = new ProjectViewModel
+            { 
+                Books = repo.Books
                 .OrderBy(p => p.BookID)
                 .Skip((pageNum - 1) * pageSize)
-                .Take(pageSize);
-            return View(blah);
+                .Take(pageSize),
+
+                PageInfo = new PageInfo
+                {
+                    TotalNumProjects = repo.Books.Count(),
+                    ProjectPerPage = pageSize,
+                    CurrentPage = pageNum
+                }
+        };
+
+            return View(x);
         }
 
     }
