@@ -14,8 +14,6 @@
             Price: @Model.Price
         </span>
     </div>
-
-
     <ul>
         <li>Author: @Model.Author</li>
         <li>Publisher: @Model.Publisher</li>
@@ -29,8 +27,7 @@
     <br />
 
 @*add button to pass information into our razor page*@
-    <form method="post" asp-pages="/Order">
-
+    <form method="post" asp-page="/Order">
         <input type="hidden" asp-for="@Model.BookID" />
         <span class="card-text">
             <button type="submit" class="btn btn-success btn-sm float-end">Order</button>
