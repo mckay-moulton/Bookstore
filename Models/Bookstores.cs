@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Bookstore.Models
 {
-    public class Bookstore
+    public class Bookstores
     {
         [Key]
         [Required]

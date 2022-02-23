@@ -36,6 +36,10 @@ namespace Bookstore
             services.AddScoped<IBookstoreRepository, EFBookstoreRepository>();
 
             services.AddRazorPages();
+            //this will allow for session use to build carts
+            services.AddDistributedMemoryCache();
+            services.AddSession();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,6 +58,7 @@ namespace Bookstore
             app.UseHttpsRedirection();
             //Corresponds to wwwroot folder
             app.UseStaticFiles();
+            app.UseSession();
 
             app.UseRouting();
 

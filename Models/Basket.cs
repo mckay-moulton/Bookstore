@@ -13,17 +13,17 @@ namespace Bookstore.Models
             /*first part delares, second part instanciates */
             public List<BasketLineItem> Items { get; set; } = new List<BasketLineItem>();
 
-            public void AddItem(Title proj, int qty)
+            public void AddItem(Bookstores book, int qty)
             {
                 BasketLineItem line = Items
-                    .Where(p => p.Project.ProjectID == proj.ProjectID)
+                    .Where(p => p.Bookstore.BookID == book.BookID)
                     .FirstOrDefault();
 
                 if (line == null)
                 {
                     Items.Add(new BasketLineItem
                     {
-                        Project = proj,
+                        Bookstore = book,
                         Quantity = qty
                     });
                 }
@@ -41,7 +41,9 @@ namespace Bookstore.Models
         public class BasketLineItem
         {
             public int LineID { get; set; }
-            public Project Project { get; set; }
+
+            //pass in the entire object with its attributes to make it simpler to access
+            public Bookstores Bookstore { get; set; } 
             public int Quantity { get; set; }
         }
     }

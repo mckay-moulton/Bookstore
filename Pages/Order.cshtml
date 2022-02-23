@@ -2,3 +2,47 @@
 @model Bookstore.Pages.IndexModel
 @{
 }
+
+<h2>Your shopping cart</h2>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Book</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Subtotal</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach(var i in Model.basket.Items)
+            {
+                <tr>
+                    <td>@i.Bookstore.BookID</td>
+                    <td>@i.Quantity</td>
+                    <td>@i.Bookstore.Price</td>
+                     @*print out subtotal for just the singular line item*@
+                    <td>@(i.Quantity * i.Bookstore.Price)</td>
+                </tr>
+            }
+    </tbody>
+    @*print out total for all line items*@
+    <tfoot>
+        <tr>
+            <td colspan="3">Total: </td>
+            <td>@Model.basket.CalculateTotal().ToString("c")</td>
+        </tr>
+        
+    </tfoot>
+</table>
+
+
+@*<li>Author: @Model.Author</li>
+<li>Publisher: @Model.Publisher</li>
+<li>ISBN: @Model.ISBN</li>
+<li>Classification: @Model.Classification</li>
+<li>Category: @Model.Category</li>
+<li>Page Count: @Model.PageCount</li>
+<li>Pages: @Model.PageCount</li>
+<li>Price: $@Model.Price</li>*@

@@ -8,8 +8,8 @@
     <p>Yo Yo it's bookstore time!</p>
 </div>
 
-@foreach (Bookstore b in Model.Books)
-    {
+@foreach (Bookstores b in Model.Books)
+{
         <partial name="BookstoreSummary" model="b"/>
     }
 

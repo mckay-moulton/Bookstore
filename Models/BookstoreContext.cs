@@ -17,7 +17,7 @@ namespace Bookstore.Models
             : base(options)
         {
         }
-        public DbSet<Bookstore> Books { get; set; }
+        public DbSet<Bookstores> Books { get; set; }
 
     }
 }
