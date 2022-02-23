@@ -23,21 +23,27 @@ namespace Bookstore.Controllers
         }
 
         //create index page view, which will include some sql-like filtering
-        public IActionResult Index(int pageNum = 1)
+        public IActionResult Index(string category, int pageNum = 1)
         {
             int pageSize = 5;
             var x = new ProjectViewModel
             { 
                 Books = repo.Books
+                // allow filtering by category (off to left side of page)
+                .Where(p => p.Category == category || category == null)
                 .OrderBy(p => p.BookID)
                 .Skip((pageNum - 1) * pageSize)
                 .Take(pageSize),
 
                 PageInfo = new PageInfo
                 {
-                    TotalNumProjects = repo.Books.Count(),
-                    ProjectPerPage = pageSize,
-                    CurrentPage = pageNum
+                // if null, return total number of books for home view
+                    TotalNumProjects =
+                    (category == null
+                        ? repo.Books.Count()
+                        : repo.Books.Where(x => x.Category == category).Count()),
+                        ProjectPerPage = pageSize,
+                        CurrentPage = pageNum
                 }
         };
 

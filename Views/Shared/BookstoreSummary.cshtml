@@ -1,0 +1,39 @@
+﻿@{
+}
+
+@model Bookstore
+
+@*// list out each column in the dataframe*@
+
+<div class="card card-outline-primary m-1 p-1">
+    <div class="bg-opacity-75 p-1">
+        <h3>@Model.Title</h3>
+
+        <span class="badge bg-info" style="float:right">
+            @*//this ill be an ovally thing to the right of each project*@
+            Price: @Model.Price
+        </span>
+    </div>
+
+
+    <ul>
+        <li>Author: @Model.Author</li>
+        <li>Publisher: @Model.Publisher</li>
+        <li>ISBN: @Model.ISBN</li>
+        <li>Classification: @Model.Classification</li>
+        <li>Category: @Model.Category</li>
+        <li>Page Count: @Model.PageCount</li>
+        <li>Pages: @Model.PageCount</li>
+        <li>Price: $@Model.Price</li>
+    </ul>
+    <br />
+
+@*add button to pass information into our razor page*@
+    <form method="post" asp-pages="/Order">
+
+        <input type="hidden" asp-for="@Model.BookID" />
+        <span class="card-text">
+            <button type="submit" class="btn btn-success btn-sm float-end">Donate</button>
+        </span>
+    </form>
+</div>

@@ -1,0 +1,18 @@
+﻿@{
+}
+@model IEnumerable<string>
+
+@*//create tag to return home*@
+
+<div class="d-grid gap-2">
+    <a asp-controller="Home" asp-action="Index" asp-route-category="" asp-route-pageNum="1" class="btn btn-outline-secondary">Home</a><br />
+
+    @foreach (string t in Model)
+
+    //create a list that will point us to the project info, at this point its passed only in the URL
+    {
+<a asp-controller="Home" asp-action="Index" asp-route-category="@t" asp-route-pageNum="1"
+    class="btn @(ViewBag.SelectedType == t ? "btn-primary" : "btn-outline-secondary")">@t
+</a><br />
+    }
+</div>
