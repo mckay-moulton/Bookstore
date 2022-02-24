@@ -19,11 +19,11 @@
         @foreach(var i in Model.basket.Items)
             {
                 <tr>
-                    <td>@i.Bookstore.BookID</td>
+                    <td>@i.Bookstore.Title</td>
                     <td>@i.Quantity</td>
                     <td>@i.Bookstore.Price</td>
                      @*print out subtotal for just the singular line item*@
-                    <td>@(i.Quantity * i.Bookstore.Price)</td>
+                    <td>@(i.Quantity * (i.Bookstore.Price))</td>
                 </tr>
             }
     </tbody>
@@ -36,6 +36,10 @@
         
     </tfoot>
 </table>
+
+<div>
+    <a class="btn btn-primary" href="@Model.ReturnUrl"> Continue Perusing </a>
+</div>
 
 
 @*<li>Author: @Model.Author</li>

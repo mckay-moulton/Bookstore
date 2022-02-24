@@ -5,7 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="Models\Infrastructure\PaginationTagHelper.cs" />
+    <Content Include="Infrastructure\PaginationTagHelper.cs" />
+    <Content Include="Infrastructure\SessionExtensions.cs" />
+    <Content Include="Infrastructure\URLExtentions.cs" />
   </ItemGroup>
 
   <ItemGroup>

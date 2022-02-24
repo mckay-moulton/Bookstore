@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Bookstore.Models.Infrastructure
+namespace Bookstore.Infrastructure
 {
     //Specifiy what kind of html element we are accessing and with what attribute: 
     [HtmlTargetElement("div", Attributes = "page-blah")]

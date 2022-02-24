@@ -25,6 +25,7 @@ namespace Bookstore.Models
                     {
                         Bookstore = book,
                         Quantity = qty
+
                     });
                 }
                 else
@@ -34,7 +35,7 @@ namespace Bookstore.Models
             }
             public double CalculateTotal()
             {
-                double sum = Items.Sum(x => x.Quantity * 25);
+                double sum = Items.Sum(x => x.Quantity * x.Bookstore.Price);  
                 return sum;
             }
         }

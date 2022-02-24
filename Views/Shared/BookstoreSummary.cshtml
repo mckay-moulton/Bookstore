@@ -28,7 +28,12 @@
 
 @*add button to pass information into our razor page*@
     <form method="post" asp-page="/Order">
+
+        @*hidden input box(s)*@
         <input type="hidden" asp-for="@Model.BookID" />
+        @*also pass along what page we jsut left, so the page will exit to that page*@
+        <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+
         <span class="card-text">
             <button type="submit" class="btn btn-success btn-sm float-end">Order</button>
         </span>

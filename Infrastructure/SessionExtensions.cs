@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace Bookstore.Models.Infrastructure
+namespace Bookstore.Infrastructure
 {
     public static class SessionExtensions
     {

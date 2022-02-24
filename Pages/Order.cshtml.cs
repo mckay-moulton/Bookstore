@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Bookstore.Models;
-using Bookstore.Models.Infrastructure;
+using Bookstore.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -20,12 +20,14 @@ namespace Bookstore.Pages
         }
 
         public Basket basket { get; set; }
+        public string ReturnUrl { get; set; }
         public void OnGet(Basket b)
         {
-             basket = HttpContext.Session.GetJson<Basket>("basket") ?? new Basket();
+            ReturnUrl = ReturnUrl ?? "/";
+            basket = HttpContext.Session.GetJson<Basket>("basket") ?? new Basket();
         }
 
-        public IActionResult OnPost(int bookID) //bringing in our project ID from our button form
+        public IActionResult OnPost(int bookID, string returnUrl) //bringing in our project ID from our button form
         {
             Bookstores p = repo.Books.FirstOrDefault(x => x.BookID == bookID);
             //add item to our basket, in the way we defined it with our Basket parameters
@@ -34,7 +36,7 @@ namespace Bookstore.Pages
 
             HttpContext.Session.SetJson("basket", basket);
             
-            return RedirectToPage(basket);
+            return RedirectToPage(new { ReturnUrl = returnUrl });
         }
 
     }
