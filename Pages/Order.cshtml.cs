@@ -24,17 +24,13 @@ namespace Bookstore.Pages
         public void OnGet(Basket b)
         {
             ReturnUrl = ReturnUrl ?? "/";
-            basket = HttpContext.Session.GetJson<Basket>("basket") ?? new Basket();
         }
 
         public IActionResult OnPost(int bookID, string returnUrl) //bringing in our project ID from our button form
         {
             Bookstores p = repo.Books.FirstOrDefault(x => x.BookID == bookID);
             //add item to our basket, in the way we defined it with our Basket parameters
-            basket = HttpContext.Session.GetJson<Basket>("basket") ?? new Basket();
             basket.AddItem(p, 1);
-
-            HttpContext.Session.SetJson("basket", basket);
             
             return RedirectToPage(new { ReturnUrl = returnUrl });
         }
