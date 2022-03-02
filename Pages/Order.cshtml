@@ -19,11 +19,20 @@
         @foreach(var i in Model.basket.Items)
             {
                 <tr>
-                    <td>@i.Bookstore.Title</td>
+                    <td>@i.Bookstores.Title</td>
                     <td>@i.Quantity</td>
-                    <td>@i.Bookstore.Price</td>
+                    <td>@i.Bookstores.Price</td>
                      @*print out subtotal for just the singular line item*@
-                    <td>@(i.Quantity * (i.Bookstore.Price))</td>
+                    <td>@((i.Quantity * (i.Bookstores.Price)).ToString("c"))</td>
+
+                    @*add a delete button*@
+                    <td class="text-center">
+                        <form method="post" asp-page-handler="Remove">
+                            <input type="hidden" name="bookID" value="@i.Bookstores.BookID" />
+                            <input type="hidden" name="returnUrl" value="@Model.ReturnUrl" />
+                            <button type="submit" class="btn btn-sm btn-danger">Remove</button>
+                        </form>
+                    </td>
                 </tr>
             }
     </tbody>

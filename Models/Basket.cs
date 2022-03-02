@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
 namespace Bookstore.Models
@@ -14,14 +15,14 @@ namespace Bookstore.Models
         public virtual void AddItem(Bookstores book, int qty)
         {
             BasketLineItem line = Items
-                .Where(p => p.Bookstore.BookID == book.BookID)
+                .Where(p => p.Bookstores.BookID == book.BookID)
                 .FirstOrDefault();
 
             if (line == null)
             {
                 Items.Add(new BasketLineItem
                 {
-                    Bookstore = book,
+                    Bookstores = book,
                     Quantity = qty
                 });
             }
@@ -34,7 +35,7 @@ namespace Bookstore.Models
         //create method to remove item
         public virtual void RemoveItem(Bookstores bookstores)
         {
-            Items.RemoveAll(x => x.Bookstore.BookID == bookstores.BookID);
+            Items.RemoveAll(x => x.Bookstores.BookID == bookstores.BookID);
         }
 
         public virtual void ClearBasket()
@@ -43,17 +44,18 @@ namespace Bookstore.Models
         }
         public double CalculateTotal()
         {
-            double sum = Items.Sum(x => x.Quantity * x.Bookstore.Price);
+            double sum = Items.Sum(x => x.Quantity * x.Bookstores.Price);
             return sum;
         }
     }
 
     public class BasketLineItem
     {
+        [Key]
         public int LineID { get; set; }
 
         //pass in the entire object with its attributes to make it simpler to access
-        public Bookstores Bookstore { get; set; }
+        public Bookstores Bookstores { get; set; }
 
         public int Quantity { get; set; }
     }
