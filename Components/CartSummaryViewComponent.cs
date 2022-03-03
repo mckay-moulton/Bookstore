@@ -9,14 +9,14 @@ namespace Bookstore.Components
 {
     public class CartSummaryViewComponent : ViewComponent
     {
-        private Bookstores books;
-        public CartSummaryViewComponent(Bookstores cartService)
+        private Basket basket;
+        public CartSummaryViewComponent(Basket cartService)
         {
-            books = cartService;
+            basket = cartService;
         }
         public IViewComponentResult Invoke()
         {
-            return View(books);
+            return View(basket);
         }
     }
 }

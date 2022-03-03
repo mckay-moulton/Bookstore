@@ -11,7 +11,6 @@ namespace Bookstore.Models
 {
     public class SessionBasket : Basket
     {
-
         public static Basket GetBasket (IServiceProvider services)
         {
             ISession session = services.GetRequiredService<IHttpContextAccessor>()?.HttpContext.Session;
