@@ -7,7 +7,11 @@
 <h2>Check out now</h2>
 <p>Please enter information here to be stored on a safe place on my personal laptop</p>
 
-<form method="post">
+<form method="post" asp-action="Checkout">
+
+    @*Add code that will alert the user if their inputs are not what our model is expecting*@
+    <div asp-validation-summary="All" class="text-danger"></div>
+
     <h4>Ship To</h4>
     <div class="form-group">
         <label asp-for="Name">Name:</label>

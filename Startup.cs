@@ -35,6 +35,7 @@ namespace Bookstore
             });
 
             services.AddScoped<IBookstoreRepository, EFBookstoreRepository>();
+            services.AddScoped<IPurchaseRepository, EFPurchaseRepository >();
 
             services.AddRazorPages();
             //this will allow for session use to build carts

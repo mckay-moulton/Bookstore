@@ -7,14 +7,21 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link href="/lib/twitter-bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link href="/lib/font-awesome/css/all.min.css" rel="stylesheet" />
 </head>
 <body>
-
-    @*//add this from chapter 7*@
     <div class="bg-dark text-white p-2">
-        <span class="navbar-brand m-lg-2">My Bookstore</span>
-        <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Home Page</a>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col navbar-brand">Bookstore</div>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Home Page</a>
+                <div class="col-6 text-right">
+                    @*<vc:cart-summary />*@
+                </div>
+            </div>
+        </div>
     </div>
+
     <div class="row m-1 p-1">
         <div id="types" class="col-2">
             <vc:types></vc:types>
