@@ -1,0 +1,23 @@
+﻿@inherits LayoutComponentBase
+
+<div class="bg-info text-white p-2">
+    <span class="navbar-brand m-lg-2">Bookstore Project Administration</span>
+</div>
+
+<div class="container-fluid">
+    @*using grid system here!*@
+    <div class="row p-2">
+        <div class="col-3 d-grid">
+            @*we aren't going to use a tags in a blazer setup, but NavLinks*@
+            <NavLink class="btn btn-outline-primary" href="/admin/projects" 
+                     ActiveClass="btn-primary text-white" Match="NavLinkMatch.Prefix">Books</NavLink>
+            @*second link for shared layout*@ 
+            @*Both links should match the other two razor page paths defined within the admin folder*@
+            <NavLink class="btn btn-primary" href="/admin/PurchaseInfo"
+                    ActiveClass="btn-primary text-white" Match="NavLinkMatch.Prefix">Purchase Info</NavLink>
+        </div>
+        <div class="col">
+            @Body
+        </div>
+    </div>
+</div>
