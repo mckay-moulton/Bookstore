@@ -17,7 +17,7 @@ namespace Bookstore.Models
         // this is going to gather the line items (see Order.cshtml)
         // public ICollection<BasketLineItem> Lines { get; set; }
         //Then we are going to gather the associated table values from our database
-        public IQueryable<Purchase> Purch => context.Purch.Include(x => x.Lines).ThenInclude(x => x.Bookstores);
+        public IQueryable<Purchase> Purchases => context.Purchases.Include(x => x.Lines).ThenInclude(x => x.Bookstores);
 
         public void SavePurchase(Purchase purchase)
         {
@@ -27,7 +27,7 @@ namespace Bookstore.Models
 
             if(purchase.PurchaseID == 0)
             {
-                context.Purch.Add(purchase);
+                context.Purchases.Add(purchase);
             }
             context.SaveChanges();
         }
