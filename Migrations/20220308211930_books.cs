@@ -2,10 +2,30 @@
 
 namespace Bookstore.Migrations
 {
-    public partial class PurchaseTable : Migration
+    public partial class books : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Books",
+                columns: table => new
+                {
+                    BookID = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Title = table.Column<string>(nullable: false),
+                    Author = table.Column<string>(nullable: false),
+                    Publisher = table.Column<string>(nullable: false),
+                    ISBN = table.Column<string>(nullable: false),
+                    Classification = table.Column<string>(nullable: false),
+                    Category = table.Column<string>(nullable: false),
+                    PageCount = table.Column<int>(nullable: false),
+                    Price = table.Column<double>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Books", x => x.BookID);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Purch",
                 columns: table => new
@@ -19,7 +39,8 @@ namespace Bookstore.Migrations
                     City = table.Column<string>(nullable: false),
                     Zip = table.Column<string>(nullable: true),
                     Country = table.Column<string>(nullable: false),
-                    Anonymous = table.Column<bool>(nullable: false)
+                    Anonymous = table.Column<bool>(nullable: false),
+                    PurchaseReceived = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -68,6 +89,9 @@ namespace Bookstore.Migrations
         {
             migrationBuilder.DropTable(
                 name: "BasketLineItem");
+
+            migrationBuilder.DropTable(
+                name: "Books");
 
             migrationBuilder.DropTable(
                 name: "Purch");
