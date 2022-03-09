@@ -3,11 +3,11 @@
 @*<h3>PurchaseInfo</h3>*@
 
 @*now we will pass in all the paramters the table is looking for*@
-<PurchaseTable TableTitle="Uncollected Purchases" Purchase="UncollectedPurchases" ButtonLabel="Puchased" PurchaseSelected="ResetPurchase">
+<PurchaseTable TableTitle="Uncollected Purchases" Purchase="UncollectedPurchases" ButtonLabel="Collected" PurchaseSelected="CollectPurchase">
 </PurchaseTable>
 
 @*Ok now be be building our second button to "reset" the donation*@
-<PurchaseTable TableTitle="Collected Purchases" Purchase="CollectedPurchases" ButtonLabel="Reset" PurchaseSelected="CollectPurchase"></PurchaseTable>
+<PurchaseTable TableTitle="Collected Purchases" Purchase="CollectedPurchases" ButtonLabel="Reset" PurchaseSelected="ResetPurchase"></PurchaseTable>
 
 @*button to refresh page/data*@
 <button class="btn btn-info" @onclick="@(x => UpdateData())">Refresh Data</button>
@@ -26,7 +26,7 @@
 
     public async Task UpdateData()
     {
-        AllPurchases = await repo.Purchases.ToListAsync();
+        AllPurchases = await repo.Purch.ToListAsync();
         UncollectedPurchases = AllPurchases.Where(x => !x.PaymentReceived);
         CollectedPurchases = AllPurchases.Where(x => x.PaymentReceived);
     }
@@ -35,9 +35,9 @@
     public void ResetPurchase(int id) => UpdatePurchase(id, false);
 
     private void UpdatePurchase(int id, bool updated)
-        {
-        Purchase p = repo.Purchases.FirstOrDefault(x => x.PurchaseID == id);
+    {
+        Purchase p = repo.Purch.FirstOrDefault(x => x.PurchaseID == id);
         p.PaymentReceived = updated;
         repo.SavePurchase(p);
-        }
+    }
 }

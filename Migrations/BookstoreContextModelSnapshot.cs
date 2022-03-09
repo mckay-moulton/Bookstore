@@ -112,12 +112,15 @@ namespace Bookstore.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<bool>("PaymentReceived")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("Zip")
                         .HasColumnType("TEXT");
 
                     b.HasKey("PurchaseID");
 
-                    b.ToTable("Purch");
+                    b.ToTable("Purchases");
                 });
 
             modelBuilder.Entity("Bookstore.Models.BasketLineItem", b =>

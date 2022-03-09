@@ -26,7 +26,7 @@ namespace Bookstore.Controllers
         }
 
         [HttpPost]
-        public IActionResult Checkout(Purchase purch)
+        public IActionResult Checkout(Purchase purchases)
         {
             if (basket.Items.Count() == 0)
             {
@@ -35,8 +35,8 @@ namespace Bookstore.Controllers
 
             if (ModelState.IsValid)
             {
-                purch.Lines = basket.Items.ToArray();
-                repo.SavePurchase(purch);
+                purchases.Lines = basket.Items.ToArray();
+                repo.SavePurchase(purchases);
                 basket.ClearBasket();
 
                 //just give them a nice message that doesn't need to access the database or any classes

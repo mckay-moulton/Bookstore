@@ -17,6 +17,12 @@
             <td>@p.Zip</td>
             <td>Purchase</td>
             <td>Quantity</td>
+            @*add button to the side of each button*@
+            <td>
+                <button class="btn btn-sm btn-danger" @onclick="@(x => PurchaseSelected.InvokeAsync(p.PurchaseID))">
+                    @ButtonLabel
+                </button>
+            </td>
         </tr>
         @foreach (BasketLineItem bli in p.Lines)
                     {
@@ -46,7 +52,7 @@
     [Parameter]
     public IEnumerable<Purchase> Purchases { get; set; }
     [Parameter]
-    public string ButtonLabel { get; set; } = "Purchased";
+    public string ButtonLabel { get; set; } = "Collected";
     [Parameter]
     public EventCallback<int> PurchaseSelected { get; set; }
 

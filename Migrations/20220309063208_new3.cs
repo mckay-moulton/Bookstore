@@ -2,12 +2,32 @@
 
 namespace Bookstore.Migrations
 {
-    public partial class PurchaseTable : Migration
+    public partial class new3 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Purch",
+                name: "Books",
+                columns: table => new
+                {
+                    BookID = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Title = table.Column<string>(nullable: false),
+                    Author = table.Column<string>(nullable: false),
+                    Publisher = table.Column<string>(nullable: false),
+                    ISBN = table.Column<string>(nullable: false),
+                    Classification = table.Column<string>(nullable: false),
+                    Category = table.Column<string>(nullable: false),
+                    PageCount = table.Column<int>(nullable: false),
+                    Price = table.Column<double>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Books", x => x.BookID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Purchases",
                 columns: table => new
                 {
                     PurchaseID = table.Column<int>(nullable: false)
@@ -19,11 +39,12 @@ namespace Bookstore.Migrations
                     City = table.Column<string>(nullable: false),
                     Zip = table.Column<string>(nullable: true),
                     Country = table.Column<string>(nullable: false),
-                    Anonymous = table.Column<bool>(nullable: false)
+                    Anonymous = table.Column<bool>(nullable: false),
+                    PaymentReceived = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Purch", x => x.PurchaseID);
+                    table.PrimaryKey("PK_Purchases", x => x.PurchaseID);
                 });
 
             migrationBuilder.CreateTable(
@@ -46,9 +67,9 @@ namespace Bookstore.Migrations
                         principalColumn: "BookID",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_BasketLineItem_Purch_PurchaseID",
+                        name: "FK_BasketLineItem_Purchases_PurchaseID",
                         column: x => x.PurchaseID,
-                        principalTable: "Purch",
+                        principalTable: "Purchases",
                         principalColumn: "PurchaseID",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -70,7 +91,10 @@ namespace Bookstore.Migrations
                 name: "BasketLineItem");
 
             migrationBuilder.DropTable(
-                name: "Purch");
+                name: "Books");
+
+            migrationBuilder.DropTable(
+                name: "Purchases");
         }
     }
 }
